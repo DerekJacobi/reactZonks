@@ -1,0 +1,59 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+/* General */
+
+.user-email{
+  width: 210px;
+  float: right;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.navbar {
+  min-height: 80px !important;
+}
+
+.nav-buttons {
+  margin-top: 15px;
+  font-family: 'Bungee', cursive;
+}
+
+body {
+  margin-left: 20px;
+  background-image: -webkit-linear-gradient(top, #f69513 0, #fabf1b 100%);
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-attachment: fixed;
+}
+
+.page-title{
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-family: 'Bungee', cursive;
+}
+/* End General */
