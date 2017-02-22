@@ -24,14 +24,50 @@
 }
 
 
-/* General */
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
-.user-email{
-  width: 210px;
-  float: right;
-  text-align: center;
-  margin-top: 5px;
+html, body, div, span, applet, object, iframe, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
+
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/* General */
 
 .navbar {
   min-height: 80px !important;
@@ -50,10 +86,134 @@ body {
   background-attachment: fixed;
 }
 
-.page-title{
-  text-align: center;
-  margin-top: 25px;
-  margin-bottom: 25px;
+/* End General */
+
+
+/* Zonks */
+
+#zonk-radio {
+  display: flex;
+  flex-direction: column;
+}
+
+#zonk-list {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.zonk-ul {
+  font-family: 'Bungee', cursive;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.zonk-li {
+  width: 33%;
+}
+
+.zonk-div {
+  min-height: 260px;
+}
+
+#hov-button{
+  &:hover {
+      color:#fabf1b;
+  }
+}
+.assign-zonk-button {
+  display: flex;
+  justify-content: center;
+}
+
+.rebel-div {
+  min-height: 200px;
   font-family: 'Bungee', cursive;
 }
-/* End General */
+
+.zonk-desc {
+  font-style: italic;
+}
+
+.well {
+  margin-bottom: 0 !important;
+}
+
+.zonk-img {
+  max-width: 50px;
+  max-height: 50px;
+  margin-bottom: 12px;
+  margin-left: 40%
+}
+
+.zonk-list-img {
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.zonk-list-data {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+
+.assign-zonk-image {
+  border-radius: 15px;
+  height: 30px;
+  width: 30px;
+  background-size: contain !important;
+}
+
+/* End Zonks */
+
+
+/* Rebels */
+
+
+/* End Rebels */
+
+/* Awarded Zonks */
+
+.awarded-by-name{
+  color: #fabf1b;
+}
+
+.no-zonks{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.trophy-zonk-list {
+  &:hover {
+      cursor: pointer;
+      color: #fabf1b;
+  }
+}
+
+#awarded-zonk-list {
+  overflow: scroll;
+}
+
+#zonk-selection-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* End Awarded Zonks */
+
+
+@media (max-width: 500px ) {
+
+  .zonk-li {
+    width: 100%;
+  }
+
+  .zonk-ul {
+    display: block;
+  }
+}

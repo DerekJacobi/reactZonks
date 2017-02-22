@@ -1,60 +1,95 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import firebase from 'firebase';
 
-const rebels = [
-  { firstName: "chris" },
-  { firstName: "mike" },
-  { firstName: "bryan" }
+const config = {
+  apiKey: "AIzaSyCT6SEpz92GA_wZURkULh5kd9m72OqpEF4",
+  authDomain: "rebelzonks-67645.firebaseapp.com",
+  databaseURL: "https://rebelzonks-67645.firebaseio.com",
+  storageBucket: "rebelzonks-67645.appspot.com",
+  messagingSenderId: "3123715510"
+};
 
+firebase.initializeApp(config);
 
-]
+const fb = firebase.database();
 
 class RebelsList extends React.Component {
   render() {
     var createRebel = function(rebel, index){
       return (
-        <li key={ index }>
-        {rebel.firstName}
-        </li>
+        <li key={ index } className="zonk-li">
+          <div className="panel panel-default rebel-div">
+            <div className="panel-heading">
+              <h3 className="panel-title">{rebel.firstname} {rebel.lastname} </h3>
+              <h4>{rebel.zonks[0]}</h4>
+            </div>
+          </div>
+      </li>
       );
     };
-    return <ul>{ rebels.map(createRebel) }</ul>;
+    return <ul>{ this.props.rebels.map(createRebel) }</ul>;
   }
 }
 
-class Rebels extends React.Component {
+class buildRebel {
+  constructor(snapshot) {
+    this.firstname = snapshot.firstname;
+    this.lastname = snapshot.lastname;
+    this.zonks = this.zonkList(snapshot.zonks);
+  }
 
-  // mixins: [ReactFireMixin]
+  zonkList(zonks){
+    console.log(zonks);
+  }
+}
 
-  // getInitialState = function() {
-  //   return {
-  //     rebels: []
-  //   };
-  // }
+var Rebels = React.createClass ({
+
+  getInitialState: function() {
+    return {
+      rebels: []
+    };
+  },
+
+  componentWillMount: function() {
+    this.rebels = fb.ref('rebels');
+    var rebels = [];
+    this.rebels.on('value', function(dataSnapshot) {
+    dataSnapshot.forEach(function(childSnapshot) {
+      var rebel = new buildRebel(childSnapshot.val());
+      rebels.push(rebel);
+    });
+
+    this.setState({
+      rebels: rebels
+    });
+  }.bind(this));
+
+  // this.awardedZonks = firebase.database().ref('awardedZonks');
+  // this.awardedZonks.on('value', function(dataSnapshot) {
+  // dataSnapshot.forEach(function(childSnapshot) {
+  //   var childKey = childSnapshot.key;
+  //   for (var i = 0; i < rebels.length; i++) {
+  //     if (rebels[i].zonks.hasOwnProperty(childKey)) {
+  //       var awardedZonk = childSnapshot.val();
+  //       rebels[i].zonksList.push(awardedZonk);
+  //     }
+  //   }
+  // });
   //
-  // componentWillMount = function() {
-  //   var firebaseRef = firebase.database().ref('rebels');
-  // }
-  //
-  // onChange =function(e) {
-  //   this.setState({text: e.target.value});
-  // }
+  // });
+
+},
 
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-        <div><RebelsList rebels= {this.props.rebels} /></div>
-        </p>
+        <div><RebelsList rebels={this.state.rebels} /></div>
       </div>
     );
   }
 
-}
+})
 
 export default Rebels;
