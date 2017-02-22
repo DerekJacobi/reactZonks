@@ -22,7 +22,7 @@ class RebelsList extends React.Component {
           <div className="panel panel-default rebel-div">
             <div className="panel-heading">
               <h3 className="panel-title">{rebel.firstname} {rebel.lastname} </h3>
-              <h4>{rebel.zonks[0]}</h4>
+              <h4>{rebel.zonks}</h4>
             </div>
           </div>
       </li>
@@ -39,8 +39,18 @@ class buildRebel {
     this.zonks = this.zonkList(snapshot.zonks);
   }
 
-  zonkList(zonks){
-    console.log(zonks);
+  zonkList(rebelsZonks){
+    var zonks = [];
+    this.awardedZonks = fb.ref('awardedZonks');
+    this.awardedZonks.on('value', function(dataSnapshot) {
+      dataSnapshot.forEach(function(childSnapshot) {
+        if (Object.keys(rebelsZonks).includes(childSnapshot.key)) {
+          zonks.push(childSnapshot.val())
+        }
+      })
+      return zonks;
+    })
+
   }
 }
 
